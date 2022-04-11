@@ -1,7 +1,18 @@
 # FTX API M122
 
 ## Installation
-`pip install requests`
+Define Api keys in .env File
+```bash
+cd code/
+cp .env.example .env
+```
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the librarys.
+```bash
+pip install requests
+```
+```bash
+pip install python-dotenv
+```
 
 ## Issues & Discussion
 
