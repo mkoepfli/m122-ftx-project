@@ -13,7 +13,7 @@ API_SECRET_KEY = os.getenv('API_SECRET_KEY')
 SUBACCOUNT_NAME = os.getenv('SUBACCOUNT_NAME')
 
 
-class FtxClient:
+class FTX:
     _ENDPOINT = 'https://ftx.com/api/'
 
     def __init__(self, api_key=API_KEY, api_secret=API_SECRET_KEY, subaccount_name=SUBACCOUNT_NAME) -> None:
@@ -58,19 +58,21 @@ class FtxClient:
                 raise Exception(data['error'])
             return data['result']
 
-    def place_order(self, market: str, side: str, price: float, size: float, client_id: str,
-                    type: str = 'limit', reduce_only: bool = False, ioc: bool = False, post_only: bool = False,
-                    ) -> dict:
-        return self._post('orders', {'market': market,
-                                     'side': side,
-                                     'price': price,
-                                     'size': size,
-                                     'type': type,
-                                     'reduceOnly': reduce_only,
-                                     'ioc': ioc,
-                                     'postOnly': post_only,
-                                     'clientId': client_id,
-                                     })
+    def place_order(self, market: str, side: str, price: float, size: float, type: str = 'limit',
+                    reduce_only: bool = False, ioc: bool = False, post_only: bool = False,
+                    client_id: str = None, reject_after_ts: float = None) -> dict:
+        return self._post('orders', {
+            'market': market,
+            'side': side,
+            'price': price,
+            'size': size,
+            'type': type,
+            'reduceOnly': reduce_only,
+            'ioc': ioc,
+            'postOnly': post_only,
+            'clientId': client_id,
+            'rejectAfterTs': reject_after_ts
+        })
 
     def get_open_orders(self, order_id: int, market: str = None) -> List[dict]:
         return self._get(f'orders', {'market': market, 'order_id': order_id})
