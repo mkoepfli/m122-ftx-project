@@ -78,7 +78,7 @@ def send_report():
     # Add header
     part.add_header(
         "Content-Disposition",
-        "attachment; filename= {filename}",
+        "attachment; filename= Report.pdf",
     )
 
     # Add attachment to your message and convert it to string
