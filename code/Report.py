@@ -39,7 +39,7 @@ def create_report(coin_name, stop_lose, profit):
 def upload_report():
     session = ftplib.FTP(ftp_server, ftp_user, ftp_pass)
     file = open('C:/Users/hosttech/webDev/M122/Report/Report.pdf', 'rb')  # file to send
-    session.storbinary('STOR test.txt', file)  # send the file
+    session.storbinary('STOR Report.pdf', file)  # send the file
     file.close()  # close file and FTP
     session.quit()
 
